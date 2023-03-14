@@ -7,7 +7,7 @@ module CellModelPassports
   self.subdir = 'share/databases/CellModelPassports'
 
   def self.organism(org="Hsa")
-    "Hsa/feb2021"
+    "Hsa/feb2023"
   end
 
   def self.load_csv(url)
