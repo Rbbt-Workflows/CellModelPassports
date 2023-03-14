@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require 'rbbt-util'
+require 'rbbt/util/simpleopt'
+
+$0 = "rbbt #{$previous_commands*" "} #{ File.basename(__FILE__) }" if $previous_commands
+
+options = SOPT.setup <<EOF
+
+Bootstrap
+
+$ #{$0} [options] <filename.tsv|->
+
+Use - to read from STDIN
+
+-h--help Print this help
+
+EOF
+if options[:help]
+  if defined? rbbt_usage
+    rbbt_usage 
+  else
+    puts SOPT.doc
+  end
+  exit 0
+end
+
+CellModelPassports.resources.keys.collect{|p| p.split("/").last }.each do |resource|
+ Log.info "Producing #{ resource }"
+  CellModelPassports[resource].produce
+end

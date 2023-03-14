@@ -1,0 +1,23 @@
+CellModelPassports=/$PWD filter="*.rb *.rake Rakefile *.rdoc *.R *.sh *.js *.haml *.sass *.txt *.conf" {
+ workflow.rb
+ bin=bin filter="*"{
+ }
+ lib=lib {
+  rbbt/source=rbbt/sources{
+   CellModelPassports.rb
+  }
+  tasks=CellModelPassports/tasks{
+   decopler.rb
+  }
+ }
+ test=test {
+  test_helper.rb
+ }
+ data=data filter="*"{
+ }
+ share=share{
+  rbbt_commands=rbbt_commands{
+   bootstrap
+  }
+ }
+}
